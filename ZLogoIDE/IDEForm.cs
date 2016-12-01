@@ -101,7 +101,7 @@ namespace ZLogoIDE
             {
                 FileFullPath = openFileDialog.FileName;
                 StreamReader streamReader = new StreamReader(FileFullPath, System.Text.Encoding.Default);
-                SetFormTitle();//this.Text = FileName+ openFileDialog.FileName.Substring( /*fileNameStatiIndex, fileNameLength)*/ + " - ") + EditorName;
+                SetFormTitle();
                 textBoxEditor.Text = streamReader.ReadToEnd();
                 streamReader.Dispose();
             }              
@@ -137,7 +137,8 @@ namespace ZLogoIDE
                         {
                             FileFullPath += ZLogoCompiler.ZLogoExt;
                         }
-                        textBoxEditor.SaveFile(FileFullPath, RichTextBoxStreamType.PlainText);
+
+                        SaveText(FileFullPath); //textBoxEditor.SaveFile(FileFullPath, RichTextBoxStreamType.PlainText);
                         SetFormTitle();
                         textChangedFlag = false;
                         return true;
@@ -147,7 +148,8 @@ namespace ZLogoIDE
                 {
                     FileInfo fileInfo = new FileInfo(FileFullPath);
                     fileInfo.Delete();
-                    textBoxEditor.SaveFile(FileFullPath, RichTextBoxStreamType.PlainText);
+                    //textBoxEditor.SaveFile(FileFullPath, RichTextBoxStreamType.PlainText);
+                    SaveText(FileFullPath);
                     textChangedFlag = false;
                     return true;
                 }
@@ -159,6 +161,12 @@ namespace ZLogoIDE
             } 
         }
 
+        private void SaveText(string path)
+        {
+            String text = textBoxEditor.Text;
+            FileUtil.WriteText(path,text);
+        }
+
         private void saveAsStripButton_Click(object sender, EventArgs e)
         {
             if (FileName != null)
@@ -167,7 +175,7 @@ namespace ZLogoIDE
             }
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                textBoxEditor.SaveFile(saveFileDialog.FileName, RichTextBoxStreamType.PlainText);
+                SaveText(FileFullPath);// textBoxEditor.SaveFile(saveFileDialog.FileName, RichTextBoxStreamType.PlainText);
                 textChangedFlag = false;
             }
         }

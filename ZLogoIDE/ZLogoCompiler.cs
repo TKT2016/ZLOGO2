@@ -40,10 +40,10 @@ namespace ZLogoIDE
             projectModel.ProjectPackageName = "ZLogoIDE";
             projectModel.EntryClassName = Path.GetFileNameWithoutExtension(srcFileInfo.FullName);
             projectModel.BinaryFileNameNoEx = Path.GetFileNameWithoutExtension(srcFileInfo.FullName);
-            projectModel.NeedSave = false;
+            
             projectModel.AddRefPackage("Z语言系统");
             projectModel.AddRefDll(new FileInfo(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ZLOGO开发包.dll")));
-
+            projectModel.NeedSave = true;
             classModel.SourceFileInfo = srcFileInfo;
             classModel.PreSourceCode =
 @"

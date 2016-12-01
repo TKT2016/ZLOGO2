@@ -63,6 +63,7 @@
     <Compile Include="CompileMsgForm.Designer.cs">
       <DependentUpon>CompileMsgForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FileUtil.cs" />
     <Compile Include="ZLogoCompiler.cs" />
     <Compile Include="IDEForm.cs">
       <SubType>Form</SubType>
